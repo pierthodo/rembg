@@ -73,8 +73,8 @@ def alpha_matting_cutout(
     return cutout
 
 
-def naive_cutout(img: PILImage, mask: PILImage) -> PILImage:
-    empty = Image.new("RGB", (img.size), (220,215,212))
+def naive_cutout(img: PILImage, mask: PILImage, background_color) -> PILImage:
+    empty = Image.new("RGB", (img.size), background_color)
     cutout = Image.composite(img, empty, mask)
     return cutout
 
@@ -115,6 +115,7 @@ def remove(
     session: Optional[BaseSession] = None,
     only_mask: bool = False,
     post_process_mask: bool = False,
+    background_color: (255,255,255),
 ) -> Union[bytes, PILImage, np.ndarray]:
 
     if isinstance(data, PILImage):
@@ -155,7 +156,7 @@ def remove(
                 cutout = naive_cutout(img, mask)
 
         else:
-            cutout = naive_cutout(img, mask)
+            cutout = naive_cutout(img, mask,background_color)
 
         cutouts.append(cutout)
 
