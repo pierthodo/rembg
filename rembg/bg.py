@@ -165,13 +165,13 @@ def remove(
         cutout = get_concat_v_multi(cutouts)
 
     if ReturnType.PILLOW == return_type:
-        return cutout
+        return cutout,mask
 
     if ReturnType.NDARRAY == return_type:
-        return np.asarray(cutout)
+        return np.asarray(cutout),mask
 
     bio = io.BytesIO()
     cutout.save(bio, "PNG")
     bio.seek(0)
 
-    return bio.read()
+    return bio.read(),mask
