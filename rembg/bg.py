@@ -115,7 +115,7 @@ def remove(
     session: Optional[BaseSession] = None,
     only_mask: bool = False,
     post_process_mask: bool = False,
-    background_color: (255,255,255),
+    background_color = (255,255,255),
 ) -> Union[bytes, PILImage, np.ndarray]:
 
     if isinstance(data, PILImage):
