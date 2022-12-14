@@ -74,7 +74,7 @@ def alpha_matting_cutout(
 
 
 def naive_cutout(img: PILImage, mask: PILImage) -> PILImage:
-    empty = Image.new("RGBA", (img.size), 0)
+    empty = Image.new("RGBA", (img.size), 255)
     cutout = Image.composite(img, empty, mask)
     return cutout
 
