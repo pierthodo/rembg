@@ -134,6 +134,7 @@ def remove(
         session = new_session("u2net")
 
     masks = session.predict(img)
+    del session
     cutouts = []
 
     for mask in masks:
